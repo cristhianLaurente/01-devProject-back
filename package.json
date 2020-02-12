@@ -7,16 +7,83 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node -r dotenv/config src/",
+    "start:watch": "nodemon",
+    "build": "rimraf dist/ && tsc",
+    "test": "nyc mocha --exit --require dotenv/config --require ts-node/register --require source-map-support/register --recursive --timeout 10000 src/**/*.test.ts",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json"
   },
-  "author": "",
+  "author": "Jean Pierre Garbi <jean27garbi@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/body-parser": "^1.19.0",
-    "@types/express": "^4.17.2",
+    "@types/cors": "^2.8.6",
+    "@types/helmet": "0.0.45",
+    "@types/jsonwebtoken": "^8.3.7",
+    "@types/sequelize": "^4.28.8",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.9.1",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.4"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/dotenv": "^6.1.1",
+    "@types/ejs": "^2.6.3",
+    "@types/express": "^4.17.2",
+    "@types/mocha": "^5.2.6",
+    "@types/mongoose": "^5.3.27",
+    "@types/morgan": "^1.7.37",
+    "@types/node": "^11.15.6",
+    "@types/supertest": "^2.0.7",
+    "chai": "^4.2.0",
+    "dotenv": "^6.2.0",
+    "mocha": "^6.1.4",
+    "nock": "^10.0.6",
+    "nodemon": "^1.19.4",
+    "nyc": "^14.1.0",
+    "prettier": "^1.17.0",
+    "rimraf": "^2.6.3",
+    "supertest": "^3.4.2",
+    "ts-node": "^8.1.0",
+    "tslint": "^5.16.0",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.4.5"
+  },
+  "nyc": {
+    "include": [
+      "src/test/*.test.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm start",
+    "ext": "ts"
   }
 }
