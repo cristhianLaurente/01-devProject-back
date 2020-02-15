@@ -6,7 +6,7 @@ const config = {
   // Database
   dbName: process.env.DB_NAME || 'devprojectapi',
   dbUser: process.env.DB_USERNAME || 'root',
-  dbPass: process.env.DB_PASSWORD || 'dkcxzwrk/root',
+  dbPass: process.env.DB_PASSWORD || 'root',
   dbHost: process.env.DB_HOST || 'localhost',
   dbPort: parseInt(process.env.DB_PORT as string, undefined) || 3306,
 
