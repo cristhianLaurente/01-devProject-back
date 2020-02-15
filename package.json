@@ -12,6 +12,7 @@
     "build": "rimraf dist/ && tsc",
     "test": "nyc mocha --exit --require dotenv/config --require ts-node/register --require source-map-support/register --recursive --timeout 10000 src/**/*.test.ts",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "prod": "ts-node -r ./dist/index.js", 
     "lint": "tslint -p tsconfig.json"
   },
   "author": "Jean Pierre Garbi <jean27garbi@gmail.com>",
