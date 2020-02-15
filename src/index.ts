@@ -3,7 +3,8 @@ import server from './server';
 
 // Connects to the Database -> then starts server
 db.sequelize
-  .authenticate()
+  // .authenticate()
+  .sync({force:true, alter: false})
   .then(() => {
     return server;
   })
